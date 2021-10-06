@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { typeOrmConfig } from './config/database';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -10,6 +13,8 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', 'client'),
       renderPath: '/'
     }),
+    TypeOrmModule.forRoot(typeOrmConfig as TypeOrmModuleOptions),
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
