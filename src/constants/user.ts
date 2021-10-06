@@ -1,4 +1,4 @@
 export enum ConstantUser {
-    MAXNAME = 20,
-    MAXEMAIL = 40
+  MAXNAME = 20,
+  MAXEMAIL = 40,
 }
