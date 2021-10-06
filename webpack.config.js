@@ -33,30 +33,8 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'dist-react/fonts/',
-              publicPath: '/dist-react/fonts/'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'dist-react/images/',
-          publicPath: '/dist-react/images/'
-        },
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.s?(a|c)ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ]
   }

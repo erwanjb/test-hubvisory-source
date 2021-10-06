@@ -3,7 +3,9 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "assets": [
-        "client/index.html"
+        "client/index.html",
+        "client/imgs",
+        "client/fonts"
     ]
   }
 }

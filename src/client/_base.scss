@@ -1,0 +1,58 @@
+$white: #fff;
+$primary: #2a4868;
+
+.h1 {
+    font-size: 36px;
+    font-weight: 600;
+    font-family: Montserrat;
+}
+
+.h2 {
+    font-size: 28px;
+    font-weight: 600;
+    font-family: Montserrat;
+}
+
+.p {
+    font-size: 20px;
+    font-weight: 300;
+    font-family: Muli;
+}
+
+.logo {
+    margin-top: 50px;
+    width: 100px;
+}
+
+.button {
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid $white;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: $primary;
+    color: $white;
+    font-family: Muli;
+}
+
+.button_secondary {
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: $primary;
+    color: $white;
+    font-family: Muli;
+}
+
+.input {
+    border-radius: 5px;
+    height: 30px;
+    &::placeholder{
+        font-family: Muli;
+        color: $primary;
+        font-size: 20px;
+        font-weight: 300;
+    }
+}
