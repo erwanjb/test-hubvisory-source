@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("./fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Muli";
+    src: url("./fonts/Muli.ttf") format("truetype");
+}
+
+body {
+    background-color: #2a4868;
+    margin: 0;
+    color: #fff;
+}
