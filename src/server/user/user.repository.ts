@@ -26,4 +26,8 @@ export class UserRepository extends Repository<User> {
     await this.save(user);
     return 'utilisateur créé';
   }
+
+  async setHighScoreUser(userId, highScore) {
+    await this.update(userId, { highScore })
+  }
 }

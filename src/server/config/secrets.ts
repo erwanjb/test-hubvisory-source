@@ -16,4 +16,8 @@ export const DB_NAME = process.env.DB_NAME;
 
 export const JWT_SECRET = process.env.JWT_SECRET;
 
+export const SESSION_SECRET = process.env.SESSION_SECRET;
+
 export const PASSWORD_SALT = parseInt(process.env.PASSWORD_SALT);
+
+export const THEMOVIEDB_API_KEY = process.env.THEMOVIEDB_API_KEY;

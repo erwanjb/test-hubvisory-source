@@ -7,6 +7,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/database';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { TheMovieDBModule } from './themoviedb/themoviedb.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot(typeOrmConfig as TypeOrmModuleOptions),
     UserModule,
     AuthModule,
+    TheMovieDBModule,
   ],
   controllers: [AppController],
   providers: [AppService],
