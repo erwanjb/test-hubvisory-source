@@ -1,0 +1,138 @@
+@use '../../base';
+
+@keyframes toRight {
+    0% {
+      right: 40%;
+    }
+    100% {
+      right: calc(0% - 100px);
+    }
+}
+
+@keyframes toLeft {
+    0% {
+      left: 40%;
+    }
+    100% {
+      left: calc(0% - 100px);
+    }
+}
+
+.contentImg {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentQuestion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    margin-left: 40px;
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.response {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Muli;
+    text-shadow: 1px 1px 2px #000;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    &:hover {
+        background-color: #EDEDED;
+    }
+}
+
+.content_response {
+    position: relative;
+    overflow: hidden;
+    height: 120px;
+}
+
+.oui {
+    position: absolute;
+    top: 0;
+    left: 40%;
+}
+
+.oui_move {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    animation: toLeft 1000ms ease-in-out;
+}
+
+.non {
+    position: absolute;
+    top: 0;
+    right: 40%;
+}
+
+.non_move {
+    position: absolute;
+    top: 0;
+    right: 40%;
+    animation: toRight 1000ms ease-in-out;
+}
+
+@media screen and (max-width: 1050px) {
+
+    @keyframes toRight {
+        0% {
+          right: 10%;
+        }
+        100% {
+            right: calc(0% - 100px);
+        }
+    }
+    
+    @keyframes toLeft {
+        0% {
+          left: 10%;
+        }
+        100% {
+            left: calc(0% - 100px);
+        }
+    }
+
+    .oui {
+        left: 10%;
+    }
+    
+    .oui_move {
+        left: 10%;
+    }
+    
+    .non {
+        right: 10%;
+    }
+    
+    .non_move {
+        right: 10%;
+    }
+}
+

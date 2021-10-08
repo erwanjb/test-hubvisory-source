@@ -1,17 +1,48 @@
 import React, { useState } from 'react';
 import './WelcomeScreen.scss';
 import { useForm } from "react-hook-form";
+import useAuth from '../../hooks/useAuth';
+import useApi from '../../hooks/useApi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WelcomeScreen = () => {
+    const auth = useAuth();
+    const api = useApi();
     const [displayCreate, setDisplayCreate] = useState(false);
     const { register, handleSubmit } = useForm();
     const { register: registerCreate, handleSubmit: handleSubmitCreate } = useForm();
 
     const onSubmit = async ({email, password}) => {
-
+        await auth.login(email, password);
     };
     const onSubmitCreate = async ({email, password, name}) => {
-
+        try {
+            await api.post('/api/user', {
+                email,
+                password,
+                name
+            })
+            toast.success('Utilisateur créé!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } catch {
+            toast.error('Utilisateur déjà existant ou autre erreur !', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
     };
     return (
         <>
@@ -27,7 +58,7 @@ const WelcomeScreen = () => {
                     <>
                         <form className="form" onSubmit={handleSubmit(onSubmit)}>
                             <input type="email" required className="input top" placeholder="Email" {...register("email")} />
-                            <input type="text" required className="input top" placeholder="Mot de passe" {...register("password")} />
+                            <input type="password" required className="input top" placeholder="Mot de passe" {...register("password")} />
                             <button className="button top">Se connecter</button>
                         </form>
                         <button onClick={() => setDisplayCreate(true)} className="button_secondary top">Créer un compte</button>
@@ -36,7 +67,7 @@ const WelcomeScreen = () => {
                     <>
                         <form className="form" onSubmit={handleSubmitCreate(onSubmitCreate)}>
                             <input type="email" required className="input top" placeholder="Email" {...registerCreate("email")} />
-                            <input type="text" required className="input top" placeholder="Mot de passe" {...registerCreate("password")} />
+                            <input type="password" required className="input top" placeholder="Mot de passe" {...registerCreate("password")} />
                             <input type="text" required className="input top" placeholder="Nom ou pseudo" {...registerCreate("name")} />
                             <button className="button top">Créer un compte</button>
                         </form>
@@ -47,6 +78,17 @@ const WelcomeScreen = () => {
             <div className="center top">
                 <img className="movie" src="/imgs/movie.png" alt="movie logo" />
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     );
 }

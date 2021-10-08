@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Req, UseGuards, Session } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Req,
+  UseGuards,
+  Session,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { TheMovieDBService } from './themoviedb.service';
 import { ValidationPipe } from '../config/validation.pipe';
@@ -16,13 +24,24 @@ export class TheMovieDBController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/getActorAndMovieRandom')
-  async getActorAndMovieRandom() {
-    return this.theMovieDBService.getActorAndMovieRandom();
+  async getActorAndMovieRandom(
+    @Session() session: Record<string, any>,
+    @Req() req: RequestWithUser,
+  ) {
+    return this.theMovieDBService.getActorAndMovieRandom(session, req.user.id);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Post('/verifyResponse')
-  async verifyResponse(@Session() session: Record<string, any>, @Body(new ValidationPipe()) verifyDto: VerifyThemovieDBDto, @Req() req: RequestWithUser) {
-    return this.theMovieDBService.verifyResponse(verifyDto, session, req.user.id);
+  async verifyResponse(
+    @Session() session: Record<string, any>,
+    @Body(new ValidationPipe()) verifyDto: VerifyThemovieDBDto,
+    @Req() req: RequestWithUser,
+  ) {
+    return this.theMovieDBService.verifyResponse(
+      verifyDto,
+      session,
+      req.user.id,
+    );
   }
 }

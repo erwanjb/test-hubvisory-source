@@ -28,6 +28,6 @@ export class UserRepository extends Repository<User> {
   }
 
   async setHighScoreUser(userId, highScore) {
-    await this.update(userId, { highScore })
+    await this.update(userId, { highScore });
   }
 }
