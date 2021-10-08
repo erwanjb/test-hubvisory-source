@@ -2,6 +2,7 @@ import React, { FC, createContext, useState, useEffect } from 'react';
 import useApi from "../hooks/useApi";
 import { useDispatch } from "react-redux";
 import { setToken, clearToken } from "../store/auth/actions";
+import { clearGameOver } from "../store/activeGameOver/actions";
 import useToken from "../hooks/useToken";
 import { toast } from 'react-toastify';
 
@@ -34,6 +35,7 @@ export const AuthProvider: FC = ({ children }) => {
 
                 setTimeout(() => {
                     dispatch(clearToken());
+                    dispatch(clearGameOver());
                     setIsLogged(false);
                 }, exp - now);
 
@@ -42,6 +44,7 @@ export const AuthProvider: FC = ({ children }) => {
             } catch (err) {
                 console.log(err);
                 dispatch(clearToken());
+                dispatch(clearGameOver());
                 setIsLogged(false);
                 return false;
             }
@@ -80,6 +83,7 @@ export const AuthProvider: FC = ({ children }) => {
 
     const logout = () => {
         dispatch(clearToken());
+        dispatch(clearGameOver());
         setIsLogged(false);
     }
 

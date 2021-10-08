@@ -4,6 +4,7 @@ import ContentLoader from "react-content-loader";
 import useApi from '../../hooks/useApi';
 import { useDispatch } from "react-redux";
 import { setGameOver } from "../../store/activeGameOver/actions";
+import useAuth from "../../hooks/useAuth";
 
 const Board = () => {
     const api = useApi();
@@ -13,6 +14,12 @@ const Board = () => {
     const [actor, setActor] = useState(null);
     const [movie, setMovie] = useState(null);
     const [points, setPoints] = useState(0);
+
+    const auth = useAuth();
+
+    const handleDisco = () => {
+        auth.logout();
+    }
 
     useEffect(() => {
         setPending(true);
@@ -40,7 +47,7 @@ const Board = () => {
         if (responseSend) {
             setReload(!reload);
         } else {
-            dispatch(setGameOver((getResponse.data as any).points, (getResponse.data as any).hihSCore))
+            dispatch(setGameOver((getResponse.data as any).points, (getResponse.data as any).highScore))
         }
     }
 
@@ -123,6 +130,9 @@ const Board = () => {
             <div className="content_response">
                 <span onClick={handleClickLeft.bind(null, true)} className={`response ${activeLeft ? 'oui_move' : 'oui'}`}>OUI</span>
                 <span onClick={handleClickRight.bind(null, false)} className={`response ${activeRight ? 'non_move' : 'non'}`}>NON</span>
+            </div>
+            <div className="center_board margin_top_board"> 
+                <button onClick={handleDisco} className="button">Se déconnecter</button>
             </div>
         </>
     );

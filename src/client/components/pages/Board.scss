@@ -18,6 +18,18 @@
     }
 }
 
+.center_board {
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin_top_board {
+    margin-top: 30px;
+}
+
 .contentImg {
     display: flex;
     flex-wrap: wrap;

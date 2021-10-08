@@ -157,7 +157,7 @@ export class TheMovieDBService {
     session[userId].movie = null;
     session[userId].response = null;
 
-    if (session[userId].highScore < points) {
+    if (!session[userId].highScore || session[userId].highScore < points) {
       session[userId].highScore = points;
     }
 

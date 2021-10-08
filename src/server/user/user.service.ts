@@ -23,4 +23,9 @@ export class UserService {
     const user = await this.userRepository.findOne(id);
     return user;
   }
+
+  async getHighScore(id: string) {
+    const user = await this.userRepository.findOne(id);
+    return user.highScore;
+  }
 }
