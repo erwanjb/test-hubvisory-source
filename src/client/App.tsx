@@ -26,6 +26,7 @@ const ConnexionRoute = ({...props}) => {
   const GameOverRoute = ({...props}) => {
     const auth = useAuth();
     const activeGameOver = useActiveGameOver();
+    console.log(activeGameOver)
     return  (!auth.isLogged ? <Redirect to='/' />  : (!activeGameOver ? <Redirect to='/board' /> : <Route {...props} component={GameOverScreen.bind(null, {points: activeGameOver.points, highScore: activeGameOver.highScore})} />));
   }
 
