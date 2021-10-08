@@ -4,9 +4,7 @@ import { UserModule } from '../user/user.module';
 import { TheMovieDBController } from './themoviedb.controller';
 
 @Module({
-  imports: [
-    UserModule,
-  ],
+  imports: [UserModule],
   controllers: [TheMovieDBController],
   providers: [TheMovieDBService],
   exports: [TheMovieDBService],

@@ -1,4 +1,4 @@
-import { Controller, Req, Post, UseGuards } from '@nestjs/common';
+import { Controller, Req, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { Request } from 'express';
@@ -16,5 +16,11 @@ export class AuthController {
   @Post('login')
   async login(@Req() req: RequestWithUser) {
     return this.authService.login(req.user);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('verifytoken')
+  async verifytoken(@Req() req: Request) {
+    return this.authService.verifytoken(req.headers.authorization);
   }
 }

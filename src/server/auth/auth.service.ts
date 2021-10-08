@@ -30,4 +30,11 @@ export class AuthService {
     const user = await this.userService.getUserById(id);
     return user;
   }
+
+  async verifytoken(tokenBearer: string) {
+    const token = tokenBearer.slice(7);
+    return {
+      exp: (await this.jwtService.verify(token)).exp,
+    };
+  }
 }
