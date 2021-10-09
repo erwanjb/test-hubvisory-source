@@ -13,26 +13,30 @@ describe("Connection", () => {
     await page.goto('http://localhost:3000', { timeout: 0 })
   })
 
-  it("should pass", async () => {
+  it("should contain", async () => {
+    const text = await page.evaluate(() => document.body.textContent);
+    expect(text).toContain('HubviMovies');
     await page.type('input[type="email"]', email)
     await page.type('input[type="password"]', mdp)
     await Promise.all([
       page.click('button'),
       page.waitForNavigation({ timeout: 0 })
     ])
-    const text = await page.evaluate(() => document.body.textContent);
-    expect(text).toContain('Quizz');
+    const text2 = await page.evaluate(() => document.body.textContent);
+    expect(text2).toContain('points');
   })
 
-  it("should fail", async () => {
-    await page.type('input[type="email"]', 'wawan.jb@gmail.com')
-    await page.type('input[type="password"]', 'terminator')
+  it("should not contain", async () => {
+    const text = await page.evaluate(() => document.body.textContent);
+    expect(text).not.toContain('points');
+    await page.type('input[type="email"]', email)
+    await page.type('input[type="password"]', mdp)
     await Promise.all([
       page.click('button'),
       page.waitForNavigation({ timeout: 0 })
     ])
-    const text = await page.evaluate(() => document.body.textContent);
-    expect(text).not.toContain('ToTo');
+    const text2 = await page.evaluate(() => document.body.textContent);
+    expect(text2).not.toContain('HubviMovies');
 
   })
 
