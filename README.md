@@ -14,7 +14,12 @@ Pourquoi ? framework Node js back qui permet d'avoir une architecture cohérente
 
 - Base de donnée : Postgresql (pour stocker le user)
 
+## Minimale Node version
+
+- v12.13.0
+
 ## Variables d'environnement
+
 
 mettre dans un .env à la racine du projet
 
